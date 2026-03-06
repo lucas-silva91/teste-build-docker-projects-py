@@ -1,4 +1,8 @@
 services:
   app:
     build: .
-    container_name: hello-python
+    container_name: python-dev
+    restart: unless-stopped
+    volumes:
+      - ./app:/app/app
+    command: watchmedo auto-restart --directory=./app --pattern="*.py" --recursive -- python app/main.py
